@@ -1,5 +1,7 @@
 package com.afiliates.demo.services;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 public interface IAfiliateService <T> {

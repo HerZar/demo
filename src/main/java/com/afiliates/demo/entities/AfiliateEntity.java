@@ -36,10 +36,8 @@ public class AfiliateEntity {
 
     private States state;
 
-    @Id
     private Date startDate;
 
-    @Id
     private Date endDate;
 
 }
