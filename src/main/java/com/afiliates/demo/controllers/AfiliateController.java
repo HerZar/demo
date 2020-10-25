@@ -1,18 +1,14 @@
 package com.afiliates.demo.controllers;
 
 
-import com.afiliates.demo.entities.AfiliateEntity;
 import com.afiliates.demo.model.Afiliate;
 import com.afiliates.demo.model.States;
 import com.afiliates.demo.services.IAfiliateService;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -44,17 +40,43 @@ public class AfiliateController {
                 return ResponseEntity.ok(afiliate);
             }
         }
-        return null;
+        return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    public ResponseEntity<?> deleteById(@PathVariable ("id") Long idkey){
+
+        if (idkey != null) {
+            afiliateService.delete(idkey);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> sabeOrUpdateAfiliate(@RequestBody Afiliate afil){
+
+        if (afil != null) {
+            afil = afiliateService.save(afil);
+            return ResponseEntity.ok(afil);
+        }
+        return ResponseEntity.noContent().build();
+    }
 
     @RequestMapping(value = "/inventar", method = RequestMethod.GET)
-    public ResponseEntity<?> getById(){
+    public ResponseEntity<?> inventar(){
 
         States state = States.ACTIVE;
         for (long i = 0 ; i<10;i++){
-            Afiliate a = new Afiliate(i, "name1"+i, "lastname"+i,"123456"+i,
-                    "email@"+i+".com","address"+i, state , new Date(), new Date());
+            Afiliate a = new Afiliate(0,
+                    Faker.instance().name().name(),
+                    Faker.instance().name().lastName(),
+                    Faker.instance().phoneNumber().phoneNumber(),
+                    Faker.instance().internet().emailAddress(),
+                    Faker.instance().address().fullAddress(),
+                    state ,
+                    new Date(),
+                    new Date());
             afiliateService.save(a);
         }
         return new ResponseEntity (HttpStatus.OK);

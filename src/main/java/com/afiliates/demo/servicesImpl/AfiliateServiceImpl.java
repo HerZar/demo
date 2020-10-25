@@ -1,18 +1,24 @@
 package com.afiliates.demo.servicesImpl;
 
+import com.afiliates.demo.controllers.AfiliateController;
 import com.afiliates.demo.entities.AfiliateEntity;
 import com.afiliates.demo.model.Afiliate;
 import com.afiliates.demo.repository.IAfiliateRepository;
 import com.afiliates.demo.services.IAfiliateService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
 public class AfiliateServiceImpl implements IAfiliateService<Afiliate> {
+
+    private static final Logger logger = Logger.getLogger(AfiliateServiceImpl.class);
 
     @Autowired
     IAfiliateRepository afiliateRepo;
@@ -28,10 +34,9 @@ public class AfiliateServiceImpl implements IAfiliateService<Afiliate> {
                         return a;
                     }).collect(Collectors.toList());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return list;
-
     }
 
     @Override
@@ -41,26 +46,32 @@ public class AfiliateServiceImpl implements IAfiliateService<Afiliate> {
             AfiliateEntity entity = this.afiliateRepo.findById(idKey).get();
             afil = new Afiliate();
             BeanUtils.copyProperties(entity, afil);
+        } catch(NoSuchElementException nsee){
+            logger.info(nsee.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return afil;
-
     }
 
     @Override
-    public void save(Afiliate model) {
-
+    public Afiliate save(Afiliate model) {
         AfiliateEntity afiliateEntity = new AfiliateEntity();
         BeanUtils.copyProperties(model, afiliateEntity);
-        this.afiliateRepo.save(afiliateEntity);
-
+        afiliateEntity = this.afiliateRepo.save(afiliateEntity);
+        model.setIdNumber(afiliateEntity.getIdNumber());
+        return model;
     }
 
     @Override
     public void delete(Long idKey) {
-
-        this.afiliateRepo.deleteById(idKey);
+        try {
+            this.afiliateRepo.deleteById(idKey);
+        }catch (EmptyResultDataAccessException erdae){
+            logger.info(erdae.getMessage());
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
 
     }
 }

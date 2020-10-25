@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AfiliatesApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(AfiliatesApplication.class, args);
-		//System.out.println("hellow world demo");
 	}
 
 }

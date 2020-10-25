@@ -10,7 +10,7 @@ public interface IAfiliateService <T> {
 
     public  T findById (Long idKey);
 
-    public void save(T model);
+    public T save(T model);
 
     public void delete(Long idKey);
 
