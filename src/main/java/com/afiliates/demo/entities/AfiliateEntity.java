@@ -7,11 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,24 +19,31 @@ import java.util.Date;
 @Table (name = "afiliates")
 public class AfiliateEntity {
 
+
     @Id
     @GeneratedValue
+    @Column
     private long idNumber;
 
+    @Column
     private String name;
 
+    @Column
     private String lastName;
 
+    @Column
     private String phoneNumber;
 
+    @Column
     private String email;
 
+    @Column
     private String address;
 
+    @Column
     private States state;
 
-    private Date startDate;
-
-    private Date endDate;
+    @OneToMany(mappedBy = "afiliate", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Purchase> purchases;
 
 }
