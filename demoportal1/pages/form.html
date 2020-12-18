@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Demo porta1">
+    <meta name="author" content="Hernan Zarzycki">
+    <title>Template Basico HTML</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header class="jumbotron">
+        <h1>Basic Template HTML</h1>
+    </header>
+
+    <main role="main">
+        <div class="container">
+            <button id="btnHome" type="button" class="btn btn-primary">Home</button>
+        </div>
+        <div class="container">
+            <div class="row">
+
+            </div>
+            <h3 id="title">Afiliates Program</h3>
+
+            <div class="row" style="height: 30px;"></div>
+            <table class="table">
+                <tr class="tr">
+                    <td>ID</td>
+                    <td><input id="txtId" type="text" disabled="true" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>Name</td>
+                    <td><input id="txtNombre" type="text" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>LastName</td>
+                    <td><input id="txtApellido" type="text" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>Phone</td>
+                    <td><input id="txtTelefono" type="text" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>Email</td>
+                    <td><input id="txtEmail" type="text" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>Address</td>
+                    <td><input id="txtDireccion" type="text" /></td>
+                </tr>
+                <tr class="tr">
+                    <td>State</td>
+                    <td>
+                        <select id="selEstado">
+                            <option value="ACTIVE">Active</option>
+                            <option value="INACTIVE">Inactive</option>
+                            <option value="CLOSED">Closed</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+            <button id="btnAdd" type="button" class="btn btn-primary">Add</button>
+            <button id="btnCancel" type="button" class="btn btn-primary">Cancel</button>
+        </div>
+    </main>
+    <footer>
+        <h5>Hernan Zarzycki</h5>
+    </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.1/uuid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.11.0/underscore.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./../js/formcontrol.js"></script>
+
+
+</html>

@@ -32,7 +32,4 @@ public class Afiliate {
     private Date startDate;
 
     private Date endDate;
-
-
-
 }

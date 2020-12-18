@@ -22,6 +22,7 @@ import java.util.Date;
 public class AfiliateEntity {
 
     @Id
+    @GeneratedValue
     private long idNumber;
 
     private String name;
