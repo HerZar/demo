@@ -53,8 +53,7 @@ public class AfiliateController {
 
         States state = States.ACTIVE;
         for (long i = 0 ; i<10;i++){
-            Afiliate a = new Afiliate(i, "name1"+i, "lastname"+i,"123456"+i,
-                    "email@"+i+".com","address"+i, state , new Date(), new Date());
+            Afiliate a = new Afiliate(i, "name1"+i, "lastname"+i,"123456"+i, "email@"+i+".com","address"+i, state , new Date(), new Date());
             afiliateService.save(a);
         }
         return new ResponseEntity (HttpStatus.OK);
