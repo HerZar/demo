@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin()
 @RequestMapping("afiliates")
 public class AfiliateController {
 
@@ -43,12 +44,12 @@ public class AfiliateController {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteById(@PathVariable ("id") Long idkey){
 
         if (idkey != null) {
             afiliateService.delete(idkey);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok("ok");
         }
         return ResponseEntity.noContent().build();
     }

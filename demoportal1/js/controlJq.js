@@ -31,37 +31,19 @@ $(document).ready(function () {
 
     function deleteAfiliated(id) {
         // Ajax method
-        /*$.ajax({
+        $.ajax({
             url: 'http://localhost:8080/afiliates/' + id,
             type: 'delete', 
-            dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
+				getAll();
             },
-        });*/
-
-        //fetch method
-        /*fetch('http://localhost:8080/afiliates/'+ id, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Access-Control-Allow-Origin':'*'
-            },
-            body: 'a=1&b=2'
-            })
-            .then(function(response) {
-                console.log('response =', response);
-                getAll();
-            })
-            .catch(function(err) {
-                console.error(err);
-            });*/
-
-        // Jquery method
-        $.post("http://localhost:8080/afiliates/" + id, function (data, status) {
-            getAll();
-
+            error: function(data) {
+                console.error(data);
+            }
         });
+
+
     }
 
     function inventar() {
